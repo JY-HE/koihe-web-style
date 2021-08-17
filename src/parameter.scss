@@ -1,0 +1,128 @@
+/** SCSS全局参数 */
+// 控制距列的左边距，来决定是在第一列右边显示还是第二列右边显示
+$columnLeftDistance: var(--columnLeftDistance);
+$columnRightDistance: var(--columnRightDistance);
+$mapTabRightDistance: var(--mapTabRightDistance);
+
+// 定位
+@mixin location($position, $param:center) {
+    position: $position;
+    @extend %#{$param};
+}
+
+// 获取渐变颜色数组
+@function getGradientString($colors) {
+    $color-list: '';
+
+    @each $color in $colors {
+        @if $color-list=='' {
+            $color-list: $color;
+        }
+
+        @else {
+            $color-list: $color-list + ','+ $color;
+        }
+
+    }
+
+    @return unquote($color-list);
+}
+
+// 上左定位
+%top-left,
+%left-top {
+    top: 0;
+    left: 0;
+}
+
+// 上中定位
+%top-center,
+%center-top {
+    top: 0;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+}
+
+// 上右定位
+%top-right,
+%right-top {
+    top: 0;
+    right: 0;
+}
+
+// 左中定位
+%center-left,
+%left-center {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto 0;
+}
+
+// 居中定位
+%center,
+%center-center {
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+// 右中定位
+%center-right,
+%right-center {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto 0;
+}
+
+// 下左定位
+%bottom-left,
+%left-bottom {
+    left: 0;
+    bottom: 0;
+}
+
+// 下中定位
+%bottom-center,
+%center-bottom {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0 auto;
+}
+
+// 下右定位
+%bottom-right,
+%right-bottom {
+    right: 0;
+    bottom: 0;
+}
+
+//正三角的通用属性
+%triangleBase {
+    font-size: 0;
+    line-height: 0;
+    overflow: hidden;
+    width: 0;
+    height: 0;
+}
+
+// 渐变边框缺失的圆弧
+@mixin missing-border($border-width, $radius, $color, $bearing, $axial) {
+    @if ($axial=='vertical') {
+        width: 100%;
+        height: $radius *2;
+    }
+
+    @else {
+        width: $radius *2;
+        height: 100%;
+    }
+
+    border-radius: $radius *2;
+    border-#{$bearing}: $border-width solid $color;
+}

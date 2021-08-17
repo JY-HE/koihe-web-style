@@ -1,0 +1,30 @@
+{
+    "name": "@rdapp/web-common-style",
+    "version": "0.0.1",
+    "private": false,
+    "main": "./src/index.js",
+    "scripts": {
+        "update": "npm version patch",
+        "build": "eslint --ext .vue --ext .js --fix ./src",
+        "start": "npm run lint && webpack"
+    },
+    "keywords": [
+        "web-common-style"
+    ],
+    "author": "Fate",
+    "license": "MIT",
+    "dependencies": {},
+    "devDependencies": {
+        "@vue/cli-plugin-eslint": "~4.2.0",
+        "@vue/eslint-config-airbnb": "^5.0.2",
+        "@vue/eslint-config-prettier": "^6.0.0",
+        "@vue/cli-service": "~4.2.0",
+        "babel-eslint": "^10.0.3",
+        "eslint": "^6.7.2",
+        "eslint-plugin-prettier": "^3.1.1",
+        "eslint-plugin-vue": "^6.1.2",
+        "prettier": "^1.19.1",
+        "sass": "^1.25.0",
+        "sass-loader": "^8.0.2"
+    }
+}
