@@ -1,0 +1,26 @@
+stages:
+    - build
+    - publish
+
+build_job:
+    stage: build
+    script:
+        - chcp 65001
+        - CALL cmd /c npm install --registry http://registry.npm.rdapp.com/
+        - CALL cmd /c npm run build
+    tags:
+        - NPM_Publish
+
+publish_job:
+    stage: publish
+    script:
+        - chcp 65001
+        - CALL cmd /c npm whoami
+        - CALL cmd /c npm publish --registry http://registry.npm.rdapp.com/
+    only:
+        - publish
+        - ids-publish
+    tags:
+        - NPM_Publish
+    environment:
+        name: 'adaptive-resolution_publish_env'
