@@ -1,8 +1,4 @@
 /** SCSS全局参数 */
-// 控制距列的左边距，来决定是在第一列右边显示还是第二列右边显示
-$columnLeftDistance: var(--columnLeftDistance);
-$columnRightDistance: var(--columnRightDistance);
-$mapTabRightDistance: var(--mapTabRightDistance);
 
 // 定位
 @mixin location($position, $param:center) {

@@ -1,8 +1,7 @@
 {
     "name": "@rdapp/web-common-style",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "private": false,
-    "main": "./src/index.js",
     "scripts": {
         "update": "npm version patch",
         "build": "eslint --ext .vue --ext .js --fix ./src",

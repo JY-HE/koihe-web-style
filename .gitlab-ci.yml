@@ -19,8 +19,7 @@ publish_job:
         - CALL cmd /c npm publish --registry http://registry.npm.rdapp.com/
     only:
         - publish
-        - ids-publish
     tags:
         - NPM_Publish
     environment:
-        name: 'adaptive-resolution_publish_env'
+        name: 'web-common-style_publish_env'
