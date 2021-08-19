@@ -6,7 +6,19 @@
  * @return: {String} rem 像素对象转换的rem值;
  */
 @function pxToRem($px) {
-    @return $px * 1rem /16;
+    @return $px * 1rem / 16;
+}
+
+/**
+ * @name: pxToPercent
+ * @desc: 计算百分比方法
+ * @param {String} $px 像素值
+ * @param {String} $refer 参数值
+ * @use: @include pxToPercent(80, 100s);
+ * @return: {String} % 计算后的百分比;
+ */
+@function pxToPercent($px, $refer) {
+    @return $px / $refer * 100%;
 }
 
 /**
@@ -24,11 +36,11 @@
 }
 
 /**
- * @name: full-contain
+ * @name: fullContain
  * @desc: 宽高为100%
- * @use: @include full-contain;
+ * @use: @include fullContain;
  */
-@mixin full-contain {
+@mixin fullContain {
     width: 100%;
     height: 100%;
 }
@@ -38,6 +50,7 @@
  * @desc: 弹性盒居中
  * @param {String} $justify 主轴对齐方式
  * @param {String} $align 副轴对齐方式
+ * @param {String} $direction 主轴是否垂直
  * @use: @include flexCenter;
  * @use: @include flexCenter(space-around, center);
  */
@@ -79,15 +92,15 @@
 }
 
 /**
- * @name: grid-item
+ * @name: gridItem
  * @desc: 网格布局-格子设置
  * @param {String} $column-start 网格行起始点
  * @param {String} $column-end 网格行结束点
  * @param {String} $row-start 网格列起始点
  * @param {String} $row-end 网格列结束点
- * @use: @include grid-item(1, 2, 2, 2);
+ * @use: @include gridItem(1, 2, 2, 2);
  */
-@mixin grid-item($column-start, $column-end, $row-start, $row-end) {
+@mixin gridItem($column-start, $column-end, $row-start, $row-end) {
     grid-column-start: $column-start;
     grid-column-end: $column-end;
     grid-row-start: $row-start;
@@ -95,39 +108,11 @@
 }
 
 /**
- * @name: modulewh
- * @desc: 平时调度-模块大小
- * @param {String} $widthList 宽度列表
- * @param {String} $className 类名
- * @use: @include modulewh(8 8 8); 表示有三列，每列占8格，共24格。
- */
-@mixin modulewh($widthList, $className: module_) {
-    $const-start: 1;
-    $const-end: 1;
-    $index: 0;
-
-    @each $width in $widthList {
-        $const-end: $const-start + $width;
-        $index: $index + 1;
-
-        .#{$className}#{$index} {
-            @include grid-item(1, 2, $const-start, $const-end);
-
-            &>div {
-                @include wh;
-            }
-        }
-
-        $const-start: $const-end;
-    }
-}
-
-/**
- * @name: text-ellipsis
+ * @name: textEllipsis
  * @desc: 单行文本溢出省略号
- * @use: @include text-ellipsis;
+ * @use: @include textEllipsis;
  */
-@mixin text-ellipsis {
+@mixin textEllipsis {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -169,8 +154,7 @@
 /**
  * @name: fixed
  * @desc: 固定定位
- * @param {String} $position 定位方式
- * @param {String} $position 定位参数
+ * @param {String} $param 定位方式
  * @use: @include fixed(top-left); 上左
  * @use: @include fixed(top-center); 上中
  * @use: @include fixed(top-right); 上右
@@ -189,8 +173,7 @@
 /**
  * @name: absolute
  * @desc: 绝对定位
- * @param {String} $position 定位方式
- * @param {String} $position 定位参数
+ * @param {String} $String 定位方式
  * @use: @include absolute(top-left); 上左
  * @use: @include absolute(top-center); 上中
  * @use: @include absolute(top-right); 上右
@@ -207,14 +190,14 @@
 }
 
 /**
- * @name: center-translate
+ * @name: centerTranslate
  * @desc: 未知宽高的元素水平/垂直居中
  * @param {String} $direction 居中方式
- * @use: @include center-translate(both); 水平/垂直居中
- * @use: @include center-translate(horizontal); 水平居中
- * @use: @include center-translate(vertical); 垂直居中
+ * @use: @include centerTranslate(both); 水平/垂直居中
+ * @use: @include centerTranslate(horizontal); 水平居中
+ * @use: @include centerTranslate(vertical); 垂直居中
  */
-@mixin center-translate($direction: both) {
+@mixin centerTranslate($direction: both) {
     position: absolute;
 
     @if $direction==both {
@@ -235,13 +218,13 @@
 }
 
 /**
- * @name: pointer-events
+ * @name: pointerEvents
  * @desc: 点击穿透
  * @param {String} $pointer 穿透参数
- * @use: @include pointer-events;
- * @use: @include pointer-events(auto);
+ * @use: @include pointerEvents;
+ * @use: @include pointerEvents(auto);
  */
-@mixin pointer-events($pointer: none) {
+@mixin pointerEvents($pointer: none) {
     pointer-events: $pointer;
 }
 
@@ -260,7 +243,7 @@
  * @name: css3
  * @desc: 浏览器前缀
  * @param {String} $property 属性名
- * @param {String} $property 属性值
+ * @param {String} $value 属性值
  * @use: @include css3(transition, 0.5s all);
  */
 @mixin css3($property, $value) {
@@ -276,19 +259,19 @@
 }
 
 /**
- * @name: bg-image
+ * @name: bgImage
  * @desc: 背景图
- * @param {String} $image 图片路径
+ * @param {String} $url 图片路径
  * @param {String} $width 背景宽度
  * @param {String} $height 背景高度
  * @param {Boolean} $isUrl 是否带url()的地址 默认false
- * @use: @include bg-image('../../public/img/demo.png');
- * @use: @include bg-image('../../public/img/demo.png', cover);
- * @use: @include bg-image('../../public/img/demo.png', 100%);
- * @use: @include bg-image('../../public/img/demo.png', 100%, 80%);
+ * @use: @include bgImage('../../public/img/demo.png');
+ * @use: @include bgImage('../../public/img/demo.png', cover);
+ * @use: @include bgImage('../../public/img/demo.png', 100%);
+ * @use: @include bgImage('../../public/img/demo.png', 100%, 80%);
  */
-@mixin bg-image($image, $width:100%, $height:$width, $isUrl:false) {
-    background-image: if($isUrl, $image, url($image));
+@mixin bgImage($url, $width:100%, $height:$width, $isUrl:false) {
+    background-image: if($isUrl, $url, url($url));
     background-position: center;
     background-size: $width $height;
     background-repeat: no-repeat;
@@ -317,7 +300,7 @@
  * @desc: div边框实现正三角
  * @param {String} $direction 三角形方向
  * @param {String} $color 三角形颜色
- * @param {String} $color 三角形大小
+ * @param {String} $size 三角形大小
  * @use: @include regularTriangle;
  * @use: @include regularTriangle(left, red, 2rem);
  */
@@ -372,7 +355,7 @@
  * @param {String} $animationName 动画名称
  * @use: @include keyframes(move-the-object) {100% { transform: translateX(200px); }}
  */
-@mixin keyframes($animationName) {
+@mixin keyframes($animationName: anime) {
     @-webkit-keyframes #{$animationName} {
         @content;
     }
@@ -393,11 +376,11 @@
 /**
  * @name: miniFont
  * @desc: 小于12px的文字 取值范围 0-12
- * @param {String} $font-size
+ * @param {String} $font-size 字体大小
  * @use: @include miniFont(12)
  */
 @mixin miniFont($font-size:12) {
-    $scale: $font-size/12;
+    $scale: $font-size / 12;
     transform-style: preserve-3d;
     transform: scale3d($scale, $scale, $scale);
 }
@@ -432,16 +415,16 @@
 }
 
 /**
- * @name: gradient-border
+ * @name: gradientBorder
  * @desc: 带圆角渐变色边框实现，需要在父元素里嵌套一个class名为content的子元素
  * @param {String} $border-width 边框宽度
  * @param {String} $radius 圆角度数
  * @param {String} $colors 渐变色列表
  * @param {String} $direction 渐变色方向
- * @use: @include gradient-border(1px, 10px, red yellow, vertical); 垂直渐变
- * @use: @include gradient-border(1px, 10px, red yellow, horizontal); 水平渐变
+ * @use: @include gradientBorder(1px, 10px, red yellow, vertical); 垂直渐变
+ * @use: @include gradientBorder(1px, 10px, red yellow, horizontal); 水平渐变
  */
-@mixin gradient-border($border-width:1px, $radius:0, $colors:transparent, $direction:vertical) {
+@mixin gradientBorder($border-width:1px, $radius:0, $colors:transparent, $direction:vertical) {
     // 圆角
     border-radius: $radius;
     // 溢出隐藏
@@ -502,18 +485,6 @@
     }
 }
 
-@mixin title-style($name) {
-    font: {
-        size: var(--#{$name}-title-font-size);
-        weight: var(--#{$name}-title-font-weight);
-        family: var(--#{$name}-title-font-family);
-    }
-
-    color: var(--#{$name}-title-font-color);
-    letter-spacing: var(--#{$name}-title-letter-spacing);
-    transform: translate(var(--#{$name}-title-font-position));
-}
-
 /**
  * @name: console
  * @desc: 打印SCSS日志
@@ -522,14 +493,52 @@
  */
 @mixin console($log) {
     &::before {
-        content: 'log ->#{$log}' !important;
+        content: 'log -> #{$log}' !important;
     }
 }
 
+/**
+ * @name: modulewh
+ * @desc: 平时调度-模块大小
+ * @param {String} $widthList 宽度列表
+ * @param {String} $className 类名
+ * @use: @include modulewh(8 8 8); 表示有三列，每列占8格，共24格。
+ */
+@mixin modulewh($widthList, $className: module) {
+    $const-start: 1;
+    $const-end: 1;
+    $index: 0;
+
+    @each $width in $widthList {
+        $const-end: $const-start + $width;
+        $index: $index + 1;
+
+        .#{$className} {
+            &:nth-child(#{$index}) {
+                @include gridItem(1, 2, $const-start, $const-end);
+
+            }
+
+            &>div {
+                @include wh;
+            }
+        }
+
+        $const-start: $const-end;
+    }
+}
+
+/**
+ * @name: demoBox
+ * @desc: 测试盒子样式
+ * @param {Boolean} $showBorder 是否显示边界线
+ * @use: @include demoBox;
+ */
 @mixin demoBox($showBorder:true) {
     .demo-box {
         @include wh;
         @include flexCenter;
+        flex-direction: column;
         position: relative;
 
         @if $showBorder {
@@ -543,4 +552,22 @@
 
 
     }
+}
+
+/**
+ * @name: titleStyle
+ * @desc: 标题基础样式 取全局自定义变量中的响应名称的基础样式
+ * @param {String} $name 基础标题名称
+ * @use: @include titleStyle('main');
+ */
+@mixin titleStyle($name) {
+    font: {
+        size: var(--#{$name}-title-font-size);
+        weight: var(--#{$name}-title-font-weight);
+        family: var(--#{$name}-title-font-family);
+    }
+
+    color: var(--#{$name}-title-font-color);
+    letter-spacing: var(--#{$name}-title-letter-spacing);
+    transform: translate(var(--#{$name}-title-font-position));
 }
