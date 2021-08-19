@@ -1,6 +1,6 @@
 {
     "name": "@rdapp/web-common-style",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "private": false,
     "scripts": {
         "update": "npm version patch",
@@ -10,7 +10,7 @@
     "keywords": [
         "web-common-style"
     ],
-    "author": "Fate",
+    "author": "仲家伟",
     "license": "MIT",
     "dependencies": {},
     "devDependencies": {
