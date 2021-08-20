@@ -34,7 +34,7 @@ module.exports = {
 
     _@param {Number} \$px 像素值_
 
-    _@use: @include pxToRem(10px);_
+    _@use: pxToRem(10px);_
 
     _@return: {String} rem 像素对象转换的 rem 值;_
 
@@ -54,7 +54,7 @@ module.exports = {
 
     _@param {Number} \$refer 参考值_
 
-    _@use: @include pxToPercent(80, 100);_
+    _@use: pxToPercent(80, 100);_
 
     _@return: {String} % 计算后的百分比;_
 
@@ -63,6 +63,132 @@ module.exports = {
     ```scss
     .demo {
         width: pxToPercent(50, 100); // width: 50%;
+    }
+    ```
+
+3. `pi`
+
+    _@desc: 返回 π 值_
+
+    _@use: pi();_
+
+    _@return: {Number} π 值_
+
+    使用参考：无
+
+    ```scss
+    .demo {
+        @include console(pi()); // 3.14159265359px;;
+    }
+    ```
+
+4. `pow`
+
+    _@desc: 计算次方值_
+
+    _@param {Number} \$number 基数_
+
+    _@param {Number} \$exp 次幂_
+
+    _@use: pow(2, 3); 表示 2 的 3 次幂_
+
+    _@return: {Number} 计算后的值_
+
+    使用参考：无
+
+    ```scss
+    .demo {
+        width: #{pow(2, 3)}px; // width: 8px;
+    }
+    ```
+
+5. `fact`
+
+    _@desc: 计算参数的阶乘_
+
+    _@param {Number} \$number 基数_
+
+    _@use: fact(10); 表示 10 的阶乘 3628800_
+
+    _@return: {Number} 计算后的值_
+
+    使用参考：无
+
+    ```scss
+    .demo {
+        @include console(fact(10)); // 3628800px;
+    }
+    ```
+
+6. `rad`
+
+    _@desc: 将角度的值从度转换为弧度_
+
+    _@param {Number} \$angle 角度_
+
+    _@use: rad(45deg); 计算 45deg 的弧度 0.7854_
+
+    _@return: {Number} 计算后的值_
+
+    使用参考：无
+
+    ```scss
+    .demo {
+        @include console(rad(45deg)); // 0.7854
+    }
+    ```
+
+7. `sin`
+
+    _@desc: 求某个数的正弦值_
+
+    _@param {String} \$angle 角度_
+
+    _@use: sin(90deg); 计算 90deg 的 sin 值 1_
+
+    _@return: {Number} 计算后的值_
+
+    使用参考：无
+
+    ```scss
+    .demo {
+        @include console(sin(90deg)); // 1
+    }
+    ```
+
+8. `cos`
+
+    _@desc: 求某个数的余弦值_
+
+    _@param {String} \$angle 角度_
+
+    _@use: cos(90deg); 计算 90deg 的 cos 值 0_
+
+    _@return: {Number} 计算后的值_
+
+    使用参考：无
+
+    ```scss
+    .demo {
+        @include console(cos(90deg)); // 0
+    }
+    ```
+
+9. `tan`
+
+    _@desc: 求某个数的正切值_
+
+    _@param {String} \$angle 角度_
+
+    _@use: tan(90deg); 计算 45deg 的 tan 值 1_
+
+    _@return: {Number} 计算后的值_
+
+    使用参考：无
+
+    ```scss
+    .demo {
+        @include console(tan(90deg)); // 1
     }
     ```
 
@@ -124,7 +250,21 @@ module.exports = {
     }
     ```
 
-4. `grid`
+4. `flexwh`
+
+    _@desc: 弹性盒-平分元素 flex 1_
+
+    _@use: @include flexwh;_
+
+    使用参考：无
+
+    ```scss
+    .demo {
+        @include flexwh; // flex: 1; flex-shrink: 0;
+    }
+    ```
+
+5. `grid`
 
     _@desc: 网格布局 grid;_
 
@@ -142,7 +282,7 @@ module.exports = {
     }
     ```
 
-5. `gridItem`
+6. `gridItem`
 
     _@desc: 网格布局-格子设置 配合 @include grid 使用;_
 
@@ -165,7 +305,7 @@ module.exports = {
     }
     ```
 
-6. `textEllipsis`
+7. `textEllipsis`
 
     _@desc: 单行文本溢出省略号;_
 
@@ -181,7 +321,7 @@ module.exports = {
     }
     ```
 
-7. `boxClamp`
+8. `boxClamp`
 
     _@desc: 多行文本溢出省略号;_
 
@@ -199,7 +339,7 @@ module.exports = {
     }
     ```
 
-8. `position`
+9. `position`
 
     _@desc: 定位;_
 
@@ -219,7 +359,7 @@ module.exports = {
     }
     ```
 
-9. `fixed`
+10. `fixed`
 
     _@desc: 固定定位;_
 
@@ -245,7 +385,7 @@ module.exports = {
     }
     ```
 
-10. `absolute`
+11. `absolute`
 
     _@desc: 绝对定位;_
 
@@ -271,13 +411,33 @@ module.exports = {
     }
     ```
 
-11. `centerTranslate`
+12. `resize`
+
+    _@desc: 宽高变化过度动画;_
+
+    _@param {String} \$duration 过度所需时间 默认 3s_
+
+    _@use: @include resize;_
+
+    _@use: @include resize(0.2s);_
+
+    使用参考：无
+
+    ```scss
+    .demo {
+        @include wh(pxToRem(100));
+        @include centerTranslate(both); // 水平/垂直居中
+        @include resize;
+    }
+    ```
+
+13. `centerTranslate`
 
     _@desc: 未知宽高的元素水平/垂直居中;_
 
     _@param {String} \$direction 居中方式_
 
-    _@use: @include centerTranslate);_
+    _@use: @include centerTranslate;_
 
     使用参考：无
 
@@ -290,7 +450,7 @@ module.exports = {
     }
     ```
 
-12. `pointerEvents`
+14. `pointerEvents`
 
     _@desc: 点击穿透;_
 
@@ -308,7 +468,7 @@ module.exports = {
     }
     ```
 
-13. `cursor`
+15. `cursor`
 
     _@desc: 鼠标样式;_
 
@@ -326,7 +486,7 @@ module.exports = {
     }
     ```
 
-14. `css3`
+16. `css3`
 
     _@desc: 浏览器兼容性前缀;_
 
@@ -351,7 +511,7 @@ module.exports = {
     }
     ```
 
-15. `bgImage`
+17. `bgImage`
 
     _@desc: css 背景图;_
 
@@ -377,7 +537,7 @@ module.exports = {
     }
     ```
 
-16. `img`
+18. `img`
 
     _@desc: 给 img 标签设置样式和 src，仅适用于 img 标签;_
 
@@ -400,7 +560,7 @@ module.exports = {
     }
     ```
 
-17. `regularTriangle`
+19. `regularTriangle`
 
     _@desc: div 边框实现正三角;_
 
@@ -422,7 +582,7 @@ module.exports = {
     }
     ```
 
-18. `shadow`
+20. `shadow`
 
     _@desc: div 边框阴影;_
 
@@ -448,7 +608,7 @@ module.exports = {
     }
     ```
 
-19. `keyframes`
+21. `keyframes`
 
     _@desc: 动画 keyframes 兼容性;_
 
@@ -469,7 +629,7 @@ module.exports = {
     }
     ```
 
-20. `miniFont`
+22. `miniFont`
 
     _@desc: 小于 12px 的文字 取值范围 0-12;_
 
@@ -486,7 +646,7 @@ module.exports = {
     }
     ```
 
-21. `select`
+23. `select`
 
     _@desc: 用户是否可用选中文本;_
 
@@ -504,7 +664,7 @@ module.exports = {
     }
     ```
 
-22. `gradient`
+24. `gradient`
 
     _@desc: 渐变背景色;_
 

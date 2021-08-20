@@ -1,0 +1,120 @@
+/**　可视化新框架样式代码块　*/
+/**
+ * @name: gradientBorder
+ * @desc: 带圆角渐变色边框实现，需要在父元素里嵌套一个class名为content的子元素
+ * @param {String} $border-width 边框宽度
+ * @param {String} $radius 圆角度数
+ * @param {String} $colors 渐变色列表
+ * @param {String} $direction 渐变色方向
+ * @use: @include gradientBorder(1px, 10px, red yellow, vertical); 垂直渐变
+ * @use: @include gradientBorder(1px, 10px, red yellow, horizontal); 水平渐变
+ */
+@mixin gradientBorder($border-width:1px, $radius:0, $colors:transparent, $direction:vertical) {
+    // 圆角
+    border-radius: $radius;
+    // 溢出隐藏
+    overflow: hidden;
+    // 怪异盒模型
+    box-sizing: border-box;
+    position: relative;
+    // horizontal水平方向 vertical垂直方向
+    $deg: if($direction=='vertical', 0deg, 90deg);
+    // 渐变颜色尺起始颜色
+    $color-start: nth($colors, 1);
+    // 渐变颜色尺结束颜色
+    $color-end: nth($colors, length($colors));
+
+    @include before {
+        @include absolute(if($direction=='vertical', top-center, right-center));
+        @include missing-border($border-width, $radius, $color-end, if($direction=='vertical', top, right), $direction);
+    }
+
+    @include after {
+        @include absolute(if($direction=='vertical', bottom-center, left-center));
+        @include missing-border($border-width, $radius, $color-start, if($direction=='vertical', bottom, left), $direction);
+    }
+
+    .content {
+        @include wh;
+        border-radius: $radius;
+        box-sizing: border-box;
+        border: $border-width solid;
+        border-image: linear-gradient($deg, getGradientString($colors)) 30 30;
+        position: relative;
+    }
+}
+
+/**
+ * @name: modulewh
+ * @desc: 平时调度-模块大小
+ * @param {String} $widthList 宽度列表
+ * @param {String} $className 类名
+ * @use: @include modulewh(8 8 8); 表示有三列，每列占8格，共24格。
+ */
+@mixin modulewh($widthList, $className: module) {
+    $const-start: 1;
+    $const-end: 1;
+    $index: 0;
+
+    @each $width in $widthList {
+        $const-end: $const-start + $width;
+        $index: $index + 1;
+
+        .#{$className} {
+            &:nth-child(#{$index}) {
+                @include gridItem(1, 2, $const-start, $const-end);
+
+            }
+
+            &>div {
+                @include wh;
+            }
+        }
+
+        $const-start: $const-end;
+    }
+}
+
+/**
+ * @name: demoBox
+ * @desc: 测试盒子样式
+ * @param {Boolean} $showBorder 是否显示边界线
+ * @use: @include demoBox;
+ */
+@mixin demoBox($showBorder:true) {
+    .demo-box {
+        @include wh;
+        @include flexCenter;
+        flex-direction: column;
+        position: relative;
+
+        @if $showBorder {
+            @include after {
+                @include absolute;
+                @include wh;
+                border: pxToRem(1) dashed rgba(#fff, 0.2);
+                box-sizing: border-box;
+            }
+        }
+
+
+    }
+}
+
+/**
+ * @name: titleStyle
+ * @desc: 标题基础样式 取全局自定义变量中的响应名称的基础样式
+ * @param {String} $name 基础标题名称
+ * @use: @include titleStyle('main');
+ */
+@mixin titleStyle($name) {
+    font: {
+        size: var(--#{$name}-title-font-size);
+        weight: var(--#{$name}-title-font-weight);
+        family: var(--#{$name}-title-font-family);
+    }
+
+    color: var(--#{$name}-title-font-color);
+    letter-spacing: var(--#{$name}-title-letter-spacing);
+    transform: translate(var(--#{$name}-title-font-position));
+}
