@@ -1,0 +1,148 @@
+/**
+ * @name: pxToRem
+ * @desc: px转换rem方法
+ * @param {Number} $px 像素值
+ * @use: pxToRem(10);
+ * @return: {String} rem 像素对象转换的rem值;
+ */
+@function pxToRem($px) {
+    $unit: unit($px);
+
+    @if $unit !='' {
+        @return $px;
+    }
+
+    @return $px * 1rem / 16;
+}
+
+/**
+ * @name: pxToPercent
+ * @desc: 计算百分比方法
+ * @param {Number} $px 像素值
+ * @param {Number} $refer 参数值
+ * @use: pxToPercent(80, 100);
+ * @return: {String} % 计算后的百分比;
+ */
+@function pxToPercent($px, $refer) {
+    @return $px / $refer * 100%;
+}
+
+/**
+ * @name: pi
+ * @desc: 返回pi值
+ * @use: pi();
+ * @return: {Number} pi值;
+ */
+@function pi() {
+    @return 3.14159265359;
+}
+
+/**
+ * @name: pow
+ * @desc: 计算次方值
+ * @param {Number} $number 基数
+ * @param {Number} $exp 次幂
+ * @use: pow(2, 3); 表示2的3次幂
+ * @return: {Number} 计算后的值;
+ */
+@function pow($number, $exp) {
+    $value: 1;
+
+    @if $exp>0 {
+        @for $i from 1 through $exp {
+            $value: $value * $number;
+        }
+    }
+
+    @else if $exp < 0 {
+        @for $i from 1 through -$exp {
+            $value: $value / $number;
+        }
+    }
+
+    @return $value;
+}
+
+/**
+ * @name: fact
+ * @desc: 计算参数的阶乘
+ * @param {Number} $number 基数
+ * @use: fact(10); 表示10的阶乘 3628800
+ * @return: {Number} 计算后的值;
+ */
+@function fact($number) {
+    $value: 1;
+
+    @if $number>0 {
+        @for $i from 1 through $number {
+            $value: $value * $i;
+        }
+    }
+
+    @return $value;
+}
+
+/**
+ * @name: rad
+ * @desc: 将角度的值从度转换为弧度
+ * @param {String} $angle 角度
+ * @use: rad(45deg); 计算45deg的弧度 0.7854
+ * @return: {Number} 计算后的值;
+ */
+@function rad($angle) {
+    $unit: unit($angle);
+    $unitless: $angle / ($angle * 0 + 1);
+
+    @if $unit==deg {
+        $unitless: $unitless / 180 * pi();
+    }
+
+    @return $unitless;
+}
+
+/**
+ * @name: sin
+ * @desc: 求某个数的正弦值
+ * @param {String} $angle 角度
+ * @use: sin(90deg); 计算90deg的sin值 1
+ * @return: {Number} 计算后的值;
+ */
+@function sin($angle) {
+    $sin: 0;
+    $angle: rad($angle);
+
+    @for $i from 0 through 10 {
+        $sin: $sin + pow(-1, $i) * pow($angle, (2 * $i + 1)) / fact(2 * $i + 1);
+    }
+
+    @return $sin;
+}
+
+/**
+ * @name: cos
+ * @desc: 求某个数的余弦值
+ * @param {String} $angle 角度
+ * @use: cos(90deg); 计算90deg的cos值 0
+ * @return: {Number} 计算后的值;
+ */
+@function cos($angle) {
+    $cos: 0;
+    $angle: rad($angle);
+
+    @for $i from 0 through 10 {
+        $cos: $cos + pow(-1, $i) * pow($angle, 2 * $i) / fact(2 * $i);
+    }
+
+    @return $cos;
+}
+
+/**
+ * @name: tan
+ * @desc: 求某个数的正切值
+ * @param {String} $angle 角度
+ * @use: tan(90deg); 计算90deg的tan值 1
+ * @return: {Number} 计算后的值;
+ */
+@function tan($angle) {
+    @return sin($angle) / cos($angle);
+}
