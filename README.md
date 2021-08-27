@@ -26,6 +26,13 @@ module.exports = {
 };
 ```
 
+> 在 main.js 中 或需要使用的地方导入 js 方法
+
+```javascript
+import cssUtils from '@rdapp/web-common-style/src';
+Vue.prototype.$cssUtils = cssUtils;
+```
+
 ## 函数
 
 1. `pxToRem`
@@ -685,7 +692,7 @@ module.exports = {
 
 ## 样式块
 
-1. `gradientBorder`
+1.  `gradientBorder`
 
     _@desc: 带圆角渐变色边框实现，需要在父元素里嵌套一个 class 名为 content 的子元素;_
 
@@ -706,7 +713,7 @@ module.exports = {
     }
     ```
 
-2. `before`
+2.  `before`
 
     _@desc: before 伪类添加;_
 
@@ -724,7 +731,7 @@ module.exports = {
     }
     ```
 
-3. `after`
+3.  `after`
 
     _@desc: after 伪类添加;_
 
@@ -742,7 +749,7 @@ module.exports = {
     }
     ```
 
-4. `console`
+4.  `console`
 
     _@desc: 利用伪类打印 SCSS 日志;_
 
@@ -759,7 +766,7 @@ module.exports = {
     }
     ```
 
-5. `modulewh`
+5.  `modulewh`
 
     _@desc: 平时调度-模块大小;_
 
@@ -779,7 +786,7 @@ module.exports = {
     }
     ```
 
-6. `demoBox`
+6.  `demoBox`
 
     _@desc: 测试盒子样式; 给父元素设置 子元素需要有个元素 class 为 demo-box_
 
@@ -795,7 +802,7 @@ module.exports = {
     }
     ```
 
-7. `titleStyle`
+7.  `titleStyle`
 
     _@desc: 平时调度标题基础样式 取全局自定义变量中的响应名称的基础样式_
 
@@ -816,4 +823,50 @@ module.exports = {
         letter-spacing: var(--main-title-letter-spacing);
         transform: translate(var(--main-title-font-position));
     }
+    ```
+
+## 内置操作 css 方法
+
+1.  `getRootCss`
+
+    _@desc: 获取某项自定义 css 变量方法_
+
+    _@param {String} varName 自定义变量名_
+
+    _@use: cssUtils.getRootCss('--main-title-font-size');_
+
+    使用参考：无
+
+    ```javascript
+    const fontSize = cssUtils.getRootCss('--main-title-font-size');
+    ```
+
+2.  `setRootCss`
+
+    _@desc: 设置某项自定义 css 变量方法_
+
+    _@param {String} varName 自定义变量名_
+
+    _@param {String} varValue 设置的值_
+
+    _@use: cssUtils.setRootCss('--main-title-font-size','5rem');_
+
+    使用参考：无
+
+    ```javascript
+    cssUtils.setRootCss('--main-title-font-size', '5rem');
+    ```
+
+3.  `removeRootCss`
+
+    _@desc: 删除某项已设置的自定义 css 变量方法_
+
+    _@param {String} varName 自定义变量名_
+
+    _@use: cssUtils.removeRootCss('--main-title-font-size');_
+
+    使用参考：无
+
+    ```javascript
+    cssUtils.removeRootCss('--main-title-font-size');
     ```
