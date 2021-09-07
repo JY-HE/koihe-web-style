@@ -221,7 +221,28 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-2. `fullContain`
+2. `whrem`
+
+    _@desc: 设置元素宽高,传入数值自动转换 rem 值_
+
+    _@param {String} \$width 宽度_
+
+    _@param {String} \$height 高度 默认继承宽度_
+
+    _@use: @include wh(40);_
+
+    _@use: @include wh(40, 50);_
+
+    使用参考：无
+
+    ```scss
+    .demo {
+        @include wh(40); // width: 2.5rem; height: 2.5rem;
+        @include wh(40, 50); // width: 2.5rem; height: 3.125rem;
+    }
+    ```
+
+3. `fullContain`
 
     _@desc: 宽高为 100%;_
 
@@ -235,7 +256,7 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-3. `flexCenter`
+4. `flexCenter`
 
     _@desc: 弹性盒 flex;_
 
@@ -257,7 +278,7 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-4. `flexwh`
+5. `flexwh`
 
     _@desc: 弹性盒-平分元素 flex 1_
 
@@ -271,7 +292,7 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-5. `grid`
+6. `grid`
 
     _@desc: 网格布局 grid;_
 
@@ -289,7 +310,7 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-6. `gridItem`
+7. `gridItem`
 
     _@desc: 网格布局-格子设置 配合 @include grid 使用;_
 
@@ -312,7 +333,7 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-7. `textEllipsis`
+8. `textEllipsis` / `textHidden`
 
     _@desc: 单行文本溢出省略号;_
 
@@ -328,7 +349,7 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-8. `boxClamp`
+9. `boxClamp`
 
     _@desc: 多行文本溢出省略号;_
 
@@ -346,7 +367,7 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-9. `position`
+10. `position`
 
     _@desc: 定位;_
 
@@ -366,7 +387,7 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-10. `fixed`
+11. `fixed`
 
     _@desc: 固定定位;_
 
@@ -392,7 +413,7 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-11. `absolute`
+12. `absolute`
 
     _@desc: 绝对定位;_
 
@@ -418,7 +439,7 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-12. `resize`
+13. `resize`
 
     _@desc: 宽高变化过度动画;_
 
@@ -438,7 +459,7 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-13. `centerTranslate`
+14. `centerTranslate`
 
     _@desc: 未知宽高的元素水平/垂直居中;_
 
@@ -457,7 +478,7 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-14. `pointerEvents`
+15. `pointerEvents`
 
     _@desc: 点击穿透;_
 
@@ -475,7 +496,25 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-15. `cursor`
+16. `pointer`
+
+    _@desc: 点击穿透;_
+
+    _@param {String} \$pointer 穿透参数_
+
+    _@use: @include pointer(false);_
+
+    使用参考：无
+
+    ```scss
+    .demo {
+        @include wh(pxToRem(100));
+        @include pointer; // 点击穿透
+        @include pointer(false); // 取消
+    }
+    ```
+
+17. `cursor`
 
     _@desc: 鼠标样式;_
 
@@ -493,7 +532,7 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-16. `css3`
+18. `css3`
 
     _@desc: 浏览器兼容性前缀;_
 
@@ -518,7 +557,7 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-17. `bgImage`
+19. `bgImage` / `bgImg`
 
     _@desc: css 背景图;_
 
@@ -544,7 +583,7 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-18. `img`
+20. `img`
 
     _@desc: 给 img 标签设置样式和 src，仅适用于 img 标签;_
 
@@ -567,7 +606,7 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-19. `regularTriangle`
+21. `regularTriangle`
 
     _@desc: div 边框实现正三角;_
 
@@ -589,7 +628,7 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-20. `shadow`
+22. `shadow`
 
     _@desc: div 边框阴影;_
 
@@ -615,7 +654,7 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-21. `keyframes`
+23. `keyframes`
 
     _@desc: 动画 keyframes 兼容性;_
 
@@ -636,7 +675,7 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-22. `miniFont`
+24. `miniFont`
 
     _@desc: 小于 12px 的文字 取值范围 0-12;_
 
@@ -653,7 +692,7 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-23. `select`
+25. `select`
 
     _@desc: 用户是否可用选中文本;_
 
@@ -671,7 +710,7 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-24. `gradient`
+26. `gradient`
 
     _@desc: 渐变背景色;_
 
@@ -713,7 +752,51 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-2.  `before`
+2.  `hover`
+
+    _@desc: hover 给当前元素添加 hover;_
+
+    _@param {Number} \$duration 过度时长 默认 0.5 单位秒(s)_
+
+    _@use: @include hover{ width: 20px; height: 20px; }_
+
+    使用参考：无
+
+    ```scss
+    .demo {
+        @include hover {
+            background: red;
+        }
+        @include hover(2) {
+            background: yellow;
+            color: red;
+        }
+    }
+    ```
+
+3.  `focus`
+
+    _@desc: focus 给当前元素添加 focus;_
+
+    _@param {Number} \$duration 过度时长 默认 0.5 单位秒(s)_
+
+    _@use: @include focus{ width: 20px; height: 20px; }_
+
+    使用参考：无
+
+    ```scss
+    .demo {
+        @include focus {
+            background: red;
+        }
+        @include focus(2) {
+            background: yellow;
+            color: red;
+        }
+    }
+    ```
+
+4.  `before`
 
     _@desc: before 伪类添加;_
 
@@ -731,7 +814,7 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-3.  `after`
+5.  `after`
 
     _@desc: after 伪类添加;_
 
@@ -749,7 +832,7 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-4.  `console`
+6.  `console`
 
     _@desc: 利用伪类打印 SCSS 日志;_
 
@@ -766,7 +849,7 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-5.  `modulewh`
+7.  `modulewh`
 
     _@desc: 平时调度-模块大小;_
 
@@ -786,7 +869,7 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-6.  `demoBox`
+8.  `demoBox`
 
     _@desc: 测试盒子样式; 给父元素设置 子元素需要有个元素 class 为 demo-box_
 
@@ -802,7 +885,7 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-7.  `titleStyle`
+9.  `titleStyle`
 
     _@desc: 平时调度标题基础样式 取全局自定义变量中的响应名称的基础样式_
 
@@ -829,7 +912,7 @@ Vue.prototype.$cssUtils = cssUtils;
 
 1.  `getRootCss`
 
-    _@desc: 获取某项自定义 css 变量方法_
+    _@desc: 获取全局自定义 css 变量方法_
 
     _@param {String} varName 自定义变量名_
 
@@ -843,7 +926,7 @@ Vue.prototype.$cssUtils = cssUtils;
 
 2.  `setRootCss`
 
-    _@desc: 设置某项自定义 css 变量方法_
+    _@desc: 设置全局自定义 css 变量方法_
 
     _@param {String} varName 自定义变量名_
 
@@ -859,7 +942,7 @@ Vue.prototype.$cssUtils = cssUtils;
 
 3.  `removeRootCss`
 
-    _@desc: 删除某项已设置的自定义 css 变量方法_
+    _@desc: 删除全局已设置的自定义 css 变量方法_
 
     _@param {String} varName 自定义变量名_
 
@@ -869,4 +952,54 @@ Vue.prototype.$cssUtils = cssUtils;
 
     ```javascript
     cssUtils.removeRootCss('--main-title-font-size');
+    ```
+
+4.  `getCss`
+
+    _@desc: 获取某项自定义 css 变量方法_
+
+    _@param {Object} dom 获取的 dom 对象_
+
+    _@param {String} varName 自定义变量名_
+
+    _@use: cssUtils.getCss(document.querySelect('#headerMain'), '--title-font-size');_
+
+    使用参考：无
+
+    ```javascript
+    const fontSize = cssUtils.getCss(document.querySelect('#headerMain'), '--title-font-size');
+    ```
+
+5.  `setCss`
+
+    _@desc: 设置某项自定义 css 变量方法_
+
+    _@param {Object} dom 获取的 dom 对象_
+
+    _@param {String} varName 自定义变量名_
+
+    _@param {String} varValue 设置的值_
+
+    _@use: cssUtils.setCss(document.querySelect('#headerMain'), '--title-font-size','5rem');_
+
+    使用参考：无
+
+    ```javascript
+    cssUtils.setCss(document.querySelect('#headerMain'), '--title-font-size', '5rem');
+    ```
+
+6.  `removeCss`
+
+    _@desc: 删除某项已设置的自定义 css 变量方法_
+
+    _@param {Object} dom 获取的 dom 对象_
+
+    _@param {String} varName 自定义变量名_
+
+    _@use: cssUtils.removeCss(document.querySelect('#headerMain'), '--title-font-size');_
+
+    使用参考：无
+
+    ```javascript
+    cssUtils.removeCss(document.querySelect('#headerMain'), '--title-font-size');
     ```
