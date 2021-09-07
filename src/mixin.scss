@@ -13,6 +13,19 @@
 }
 
 /**
+ * @name: whrem
+ * @desc: 设置元素宽高,传入数值自动转换rem值
+ * @param {String} $width 宽度
+ * @param {String} $height 高度
+ * @use: @include whrem(40);
+ * @use: @include whrem(200, 100);
+ */
+@mixin whrem($width, $height:$width) {
+    width: pxToRem($width);
+    height: pxToRem($height);
+}
+
+/**
  * @name: fullContain
  * @desc: 宽高为100%
  * @use: @include fullContain;
@@ -100,6 +113,17 @@
  * @use: @include textEllipsis;
  */
 @mixin textEllipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/**
+ * @name: textHidden
+ * @desc: 单行文本溢出省略号
+ * @use: @include textHidden;
+ */
+@mixin textHidden {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -228,6 +252,23 @@
 }
 
 /**
+ * @name: pointer
+ * @desc: 点击穿透
+ * @param {String} $pointer 穿透参数
+ * @use: @include pointer;
+ * @use: @include pointer(false);
+ */
+@mixin pointer($pointer: true) {
+    @if($pointer) {
+        pointer-events: none;
+    }
+
+    @else {
+        pointer-events: auto;
+    }
+}
+
+/**
  * @name: cursor
  * @desc: 鼠标样式
  * @param {String} $cursor 穿透参数
@@ -270,6 +311,16 @@
  * @use: @include bgImage('../../public/img/demo.png', 100%, 80%);
  */
 @mixin bgImage($url, $width:100%, $height:$width, $isUrl:false) {
+    background-image: if($isUrl, $url, url($url));
+    background-position: center;
+    background-size: $width $height;
+    background-repeat: no-repeat;
+}
+
+/**
+ * 功能同 @include bgImage
+*/
+@mixin bgImg($url, $width:100%, $height:$width, $isUrl:false) {
     background-image: if($isUrl, $url, url($url));
     background-position: center;
     background-size: $width $height;
@@ -411,6 +462,40 @@
  */
 @mixin gradient($colors:transparent, $direction:0deg) {
     background-image: linear-gradient($direction, getGradientString($colors));
+}
+
+/**
+ * @name: hover
+ * @param {Number} $duration 过度时长 默认0.5 单位秒(s)
+ * @desc: 给当前元素添加hover
+ * @use: @include hover{ width: 20px; height: 20px; }
+ * @use: @include hover(1){ width: 20px; height: 20px; }
+ */
+@mixin hover($duration: 0.5, $transition:true) {
+    @if($transition) {
+        transition: #{$duration}s all;
+    }
+
+    &:hover {
+        @content;
+    }
+}
+
+/**
+ * @name: focus
+ * @param {Number} $duration 过度时长 默认0.5 单位秒(s)
+ * @desc: 给当前元素添加focus
+ * @use: @include focus{ width: 20px; height: 20px; }
+ * @use: @include focus(1){ width: 20px; height: 20px; }
+ */
+@mixin focus($duration: 0.5, $transition:true) {
+    @if($transition) {
+        transition: #{$duration}s all;
+    }
+
+    &:focus {
+        @content;
+    }
 }
 
 /**
