@@ -675,7 +675,39 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-24. `miniFont`
+24. `placeholder`
+
+    _@desc: 输入框提示文字样式;_
+
+    _@use: @include placeholder { color: #fff; }_
+
+    使用参考：无
+
+    ```scss
+    input.demo {
+        @include placeholder {
+            color: #fff;
+        }
+    }
+    ```
+
+25. `scrollbar`
+
+    _@desc: 滚动条样式;_
+
+    _@use: @include scrollbar { background: #fff; }_
+
+    使用参考：无
+
+    ```scss
+    input.demo {
+        @include placeholder {
+            background: #fff;
+        }
+    }
+    ```
+
+26. `miniFont`
 
     _@desc: 小于 12px 的文字 取值范围 0-12;_
 
@@ -692,7 +724,7 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-25. `select`
+27. `select`
 
     _@desc: 用户是否可用选中文本;_
 
@@ -710,7 +742,7 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-26. `gradient`
+28. `gradient`
 
     _@desc: 渐变背景色;_
 

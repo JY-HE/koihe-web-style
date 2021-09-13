@@ -1,6 +1,6 @@
 {
     "name": "@rdapp/web-common-style",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "private": false,
     "scripts": {
         "update": "npm version patch",
