@@ -9,7 +9,7 @@
  * @use: @include gradientBorder(1px, 10px, red yellow, vertical); 垂直渐变
  * @use: @include gradientBorder(1px, 10px, red yellow, horizontal); 水平渐变
  */
-@mixin gradientBorder($border-width:1px, $radius:0, $colors:transparent, $direction:vertical) {
+@mixin gradientBorder($border-width: 1px, $radius: 0, $colors: transparent, $direction: vertical) {
     // 圆角
     border-radius: $radius;
     // 溢出隐藏
@@ -18,20 +18,32 @@
     box-sizing: border-box;
     position: relative;
     // horizontal水平方向 vertical垂直方向
-    $deg: if($direction=='vertical', 0deg, 90deg);
+    $deg: if($direction== 'vertical', 0deg, 90deg);
     // 渐变颜色尺起始颜色
     $color-start: nth($colors, 1);
     // 渐变颜色尺结束颜色
     $color-end: nth($colors, length($colors));
 
     @include before {
-        @include absolute(if($direction=='vertical', top-center, right-center));
-        @include missing-border($border-width, $radius, $color-end, if($direction=='vertical', top, right), $direction);
+        @include absolute(if($direction== 'vertical', top-center, right-center));
+        @include missing-border(
+            $border-width,
+            $radius,
+            $color-end,
+            if($direction== 'vertical', top, right),
+            $direction
+        );
     }
 
     @include after {
-        @include absolute(if($direction=='vertical', bottom-center, left-center));
-        @include missing-border($border-width, $radius, $color-start, if($direction=='vertical', bottom, left), $direction);
+        @include absolute(if($direction== 'vertical', bottom-center, left-center));
+        @include missing-border(
+            $border-width,
+            $radius,
+            $color-start,
+            if($direction== 'vertical', bottom, left),
+            $direction
+        );
     }
 
     .content {
@@ -41,6 +53,50 @@
         border: $border-width solid;
         border-image: linear-gradient($deg, getGradientString($colors)) 30 30;
         position: relative;
+    }
+}
+
+/**
+ * @name: linearGradientText
+ * @desc: 文字发光 + 文字阴影效果，需要在元素上添加title为文字内容 <div title="文字"></div>
+ * @param {Number} $fontSize 文字大小 默认 1rem
+ * @param {String} $linearGradient1 起始渐变色 默认 #dcebff
+ * @param {String} $linearGradient2 结束渐变色 默认 #9cc5ff
+ * @param {String} $textShadow 文字阴影颜色 默认 #032e60
+ * @param {String} $deg 渐变色角度 默认 0deg 从上到下
+ * @use: @include linearGradientText;
+ * @use: @include linearGradientText(16, #dcebff, #9cc5ff, #032e60, 0); 垂直渐变
+ */
+@mixin linearGradientText(
+    $fontSize: 16,
+    $linearGradient1: #dcebff,
+    $linearGradient2: #9cc5ff,
+    $textShadow: #032e60,
+    $deg: 0
+) {
+    @include flexCenter;
+    position: relative;
+    font-size: pxToRem($fontSize);
+    min-height: pxToRem($fontSize);
+    // 字体阴影
+    @include before {
+        content: attr(title);
+        @include absolute;
+        color: transparent;
+        text-shadow: pxToRem(3) pxToRem(3) pxToRem(8) $textShadow;
+        z-index: 10;
+        font-size: pxToRem($fontSize);
+    }
+    // 字体渐变色
+    @include after {
+        content: attr(title);
+        @include absolute;
+        background: linear-gradient(#{$deg}deg, $linearGradient1 0%, $linearGradient2 100%);
+        background-size: 100% 100%;
+        font-size: pxToRem($fontSize);
+        z-index: 20;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
     }
 }
 
@@ -63,10 +119,9 @@
         .#{$className} {
             &:nth-child(#{$index}) {
                 @include gridItem(1, 2, $const-start, $const-end);
-
             }
 
-            &>div {
+            & > div {
                 @include wh;
             }
         }
@@ -81,7 +136,7 @@
  * @param {Boolean} $showBorder 是否显示边界线
  * @use: @include demoBox;
  */
-@mixin demoBox($showBorder:true) {
+@mixin demoBox($showBorder: true) {
     .demo-box {
         @include wh;
         @include flexCenter;
@@ -96,8 +151,6 @@
                 box-sizing: border-box;
             }
         }
-
-
     }
 }
 
