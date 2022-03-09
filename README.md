@@ -367,7 +367,21 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-10. `position`
+10. `longWordWrap`
+
+    _@desc: 长单词自动换行;_
+
+    _@use: @include longWordWrap;_
+
+    使用参考：无
+
+    ```scss
+    .demo {
+        @include longWordWrap;
+    }
+    ```
+
+11. `position`
 
     _@desc: 定位;_
 
@@ -387,7 +401,7 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-11. `fixed`
+12. `fixed`
 
     _@desc: 固定定位;_
 
@@ -413,7 +427,7 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-12. `absolute`
+13. `absolute`
 
     _@desc: 绝对定位;_
 
@@ -439,7 +453,7 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-13. `resize`
+14. `resize`
 
     _@desc: 宽高变化过度动画;_
 
@@ -459,7 +473,7 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-14. `centerTranslate`
+15. `centerTranslate`
 
     _@desc: 未知宽高的元素水平/垂直居中;_
 
@@ -478,7 +492,7 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-15. `pointerEvents`
+16. `pointerEvents`
 
     _@desc: 点击穿透;_
 
@@ -496,7 +510,7 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-16. `pointer`
+17. `pointer`
 
     _@desc: 点击穿透;_
 
@@ -514,7 +528,7 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-17. `cursor`
+18. `cursor`
 
     _@desc: 鼠标样式;_
 
@@ -532,7 +546,7 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-18. `css3`
+19. `css3`
 
     _@desc: 浏览器兼容性前缀;_
 
@@ -557,7 +571,7 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-19. `bgImage` / `bgImg`
+20. `bgImage` / `bgImg`
 
     _@desc: css 背景图;_
 
@@ -583,7 +597,7 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-20. `img`
+21. `img`
 
     _@desc: 给 img 标签设置样式和 src，仅适用于 img 标签;_
 
@@ -606,7 +620,7 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-21. `regularTriangle`
+22. `regularTriangle`
 
     _@desc: div 边框实现正三角;_
 
@@ -628,7 +642,7 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-22. `shadow`
+23. `shadow`
 
     _@desc: div 边框阴影;_
 
@@ -654,7 +668,7 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-23. `keyframes`
+24. `keyframes`
 
     _@desc: 动画 keyframes 兼容性;_
 
@@ -675,7 +689,7 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-24. `placeholder`
+25. `placeholder`
 
     _@desc: 输入框提示文字样式;_
 
@@ -691,7 +705,7 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-25. `scrollbar`
+26. `scrollbar`
 
     _@desc: 滚动条样式;_
 
@@ -707,7 +721,7 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-26. `miniFont`
+27. `miniFont`
 
     _@desc: 小于 12px 的文字 取值范围 0-12;_
 
@@ -724,7 +738,7 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-27. `select`
+28. `select`
 
     _@desc: 用户是否可用选中文本;_
 
@@ -742,7 +756,7 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-28. `gradient`
+29. `gradient`
 
     _@desc: 渐变背景色;_
 
@@ -784,7 +798,31 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-2.  `hover`
+2.  `linearGradientText`
+
+    _@desc: 文字发光 + 文字阴影效果，需要在元素上添加 title 为文字内容 <div title="文字"></div>;_
+
+    _@param {Number} \$fontSize 文字大小 默认 1rem_
+
+    _@param {String} \$linearGradient1 起始渐变色 默认 #dcebff_
+
+    _@param {String} \$linearGradient2 结束渐变色 默认 #9cc5ff_
+
+    _@param {String} \$textShadow 文字阴影颜色 默认 #032e60_
+
+    _@param {String} \$deg 渐变色角度 默认 0deg 从上到下_
+
+    _@use: @use: @include linearGradientText(16, #dcebff, #9cc5ff, #032e60, 0); 垂直渐变_
+
+    使用参考：无
+
+    ```scss
+    .demo {
+        @include linearGradientText(16, #dcebff, #9cc5ff, #032e60, 0); // 垂直渐变
+    }
+    ```
+
+3.  `hover`
 
     _@desc: hover 给当前元素添加 hover;_
 
@@ -806,7 +844,7 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-3.  `focus`
+4.  `focus`
 
     _@desc: focus 给当前元素添加 focus;_
 
@@ -828,7 +866,7 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-4.  `before`
+5.  `before`
 
     _@desc: before 伪类添加;_
 
@@ -846,7 +884,7 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-5.  `after`
+6.  `after`
 
     _@desc: after 伪类添加;_
 
@@ -864,7 +902,25 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-6.  `console`
+7.  `placeholder`
+
+    _@desc: placeholder 样式修改;_
+
+    _@use: @use: @include placeholder{ width: 20px; height: 20px; }_
+
+    使用参考：无
+
+    ```scss
+    input.demo {
+        @include placeholder {
+            width: 20px;
+            height: 20px;
+            background: skyblue;
+        }
+    }
+    ```
+
+8.  `console`
 
     _@desc: 利用伪类打印 SCSS 日志;_
 
@@ -881,7 +937,7 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-7.  `modulewh`
+9.  `modulewh`
 
     _@desc: 平时调度-模块大小;_
 
@@ -901,7 +957,7 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-8.  `demoBox`
+10. `demoBox`
 
     _@desc: 测试盒子样式; 给父元素设置 子元素需要有个元素 class 为 demo-box_
 
@@ -917,7 +973,7 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-9.  `titleStyle`
+11. `titleStyle`
 
     _@desc: 平时调度标题基础样式 取全局自定义变量中的响应名称的基础样式_
 
