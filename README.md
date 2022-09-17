@@ -6,7 +6,7 @@
 
 ```
 npm install --save jy-web-style
-yarn add --save jy-web-style
+yarn add jy-web-style
 ```
 
 ## 引入
@@ -35,7 +35,7 @@ module.exports = {
     preprocessorOptions: {
       scss: {
         additionalData: `
-          @import '"jy-web-style/src/index.scss"';
+          @import "jy-web-style/src/index.scss";
          `,
       },
     },
