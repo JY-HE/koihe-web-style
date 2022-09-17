@@ -1,6 +1,6 @@
 {
-    "name": "@rdapp/web-common-style",
-    "version": "0.0.8",
+    "name": "jy-web-style",
+    "version": "0.0.1",
     "private": false,
     "scripts": {
         "update": "npm version patch",
@@ -8,9 +8,9 @@
         "start": "npm run lint && webpack"
     },
     "keywords": [
-        "web-common-style"
+        "jy-web-style"
     ],
-    "author": "仲家伟",
+    "author": "HJY",
     "license": "MIT",
     "dependencies": {},
     "devDependencies": {

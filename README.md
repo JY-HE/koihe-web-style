@@ -1,16 +1,17 @@
-# @rdapp/web-common-style
+# jy-web-style
 
 > 一套基于 scss 的前端样式库
 
 ## 安装
 
 ```
-npm install --save @rdapp/web-common-style
+npm install --save jy-web-style
+yarn add --save jy-web-style
 ```
 
 ## 引入
 
-> 在 vue.config.js 中导入样式库入口文件
+> 在 `vue.config.js` 中导入样式库入口文件
 
 ```javascript
 module.exports = {
@@ -18,7 +19,7 @@ module.exports = {
         loaderOptions: {
             sass: {
                 data: `
-                @import "@rdapp/web-common-style/src/index.scss";
+                @import "jy-web-style/src/index.scss";
             `,
             },
         },
@@ -26,10 +27,26 @@ module.exports = {
 };
 ```
 
-> 在 main.js 中 或需要使用的地方导入 js 方法
+> 在 `vite.config.ts` 中导入样式库入口文件
 
 ```javascript
-import cssUtils from '@rdapp/web-common-style/src';
+module.exports = {
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `
+          @import '"jy-web-style/src/index.scss"';
+         `,
+      },
+    },
+  },
+};
+```
+
+> 在 `main.js` 中或 `main.ts` 以及需要使用的地方导入方法
+
+```javascript
+import cssUtils from 'jy-web-style/src';
 Vue.prototype.$cssUtils = cssUtils;
 ```
 
@@ -73,131 +90,6 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
-3. `pi`
-
-    _@desc: 返回 π 值_
-
-    _@use: pi();_
-
-    _@return: {Number} π 值_
-
-    使用参考：无
-
-    ```scss
-    .demo {
-        @include console(pi()); // 3.14159265359px;;
-    }
-    ```
-
-4. `pow`
-
-    _@desc: 计算次方值_
-
-    _@param {Number} \$number 基数_
-
-    _@param {Number} \$exp 次幂_
-
-    _@use: pow(2, 3); 表示 2 的 3 次幂_
-
-    _@return: {Number} 计算后的值_
-
-    使用参考：无
-
-    ```scss
-    .demo {
-        width: #{pow(2, 3)}px; // width: 8px;
-    }
-    ```
-
-5. `fact`
-
-    _@desc: 计算参数的阶乘_
-
-    _@param {Number} \$number 基数_
-
-    _@use: fact(10); 表示 10 的阶乘 3628800_
-
-    _@return: {Number} 计算后的值_
-
-    使用参考：无
-
-    ```scss
-    .demo {
-        @include console(fact(10)); // 3628800px;
-    }
-    ```
-
-6. `rad`
-
-    _@desc: 将角度的值从度转换为弧度_
-
-    _@param {Number} \$angle 角度_
-
-    _@use: rad(45deg); 计算 45deg 的弧度 0.7854_
-
-    _@return: {Number} 计算后的值_
-
-    使用参考：无
-
-    ```scss
-    .demo {
-        @include console(rad(45deg)); // 0.7854
-    }
-    ```
-
-7. `sin`
-
-    _@desc: 求某个数的正弦值_
-
-    _@param {String} \$angle 角度_
-
-    _@use: sin(90deg); 计算 90deg 的 sin 值 1_
-
-    _@return: {Number} 计算后的值_
-
-    使用参考：无
-
-    ```scss
-    .demo {
-        @include console(sin(90deg)); // 1
-    }
-    ```
-
-8. `cos`
-
-    _@desc: 求某个数的余弦值_
-
-    _@param {String} \$angle 角度_
-
-    _@use: cos(90deg); 计算 90deg 的 cos 值 0_
-
-    _@return: {Number} 计算后的值_
-
-    使用参考：无
-
-    ```scss
-    .demo {
-        @include console(cos(90deg)); // 0
-    }
-    ```
-
-9. `tan`
-
-    _@desc: 求某个数的正切值_
-
-    _@param {String} \$angle 角度_
-
-    _@use: tan(90deg); 计算 45deg 的 tan 值 1_
-
-    _@return: {Number} 计算后的值_
-
-    使用参考：无
-
-    ```scss
-    .demo {
-        @include console(tan(90deg)); // 1
-    }
-    ```
 
 ## 方法
 

@@ -136,10 +136,11 @@
  * @use: @include boxClamp(2);
  */
 @mixin boxClamp($row: 3) {
+    display: -webkit-box;
     overflow: hidden;
-    line-clamp: $row;
-    box-orient: vertical;
-    display: box;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: $row;
+    -webkit-box-orient: vertical;
 }
 
 /**
