@@ -5,7 +5,8 @@
     "scripts": {
         "update": "npm version patch",
         "build": "eslint --ext .vue --ext .js --fix ./src",
-        "start": "npm run lint && webpack"
+        "start": "npm run lint && webpack",
+        "publish": "npm publish"
     },
     "keywords": [
         "jy-web-style"
