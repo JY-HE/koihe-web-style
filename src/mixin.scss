@@ -598,3 +598,20 @@
         content: 'log -> #{$log}' !important;
     }
 }
+
+/**
+ * @name: textAlignment
+ * @desc: 文字水平对齐方式
+ * @param {String} $align 对齐方式
+ * @param {Boolean} $last 最后一行是否两端对齐
+ * @use: @include textAlignment(left);
+ * @use: @include textAlignment(justify,true);
+ */
+@mixin textAlignment($align: left, $last: false) {
+    text-align: $align;
+    text-justify: distribute-all-lines;
+
+    @if $last {
+        text-align-last: justify;
+    }
+}

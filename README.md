@@ -667,6 +667,27 @@ Vue.prototype.$cssUtils = cssUtils;
     }
     ```
 
+30. `textAlignment`
+
+    _@desc: 文字水平对齐方式;_
+
+    _@param {String} $align 对齐方式;_
+
+    _@param {Boolean} $last 最后一行是否两端对齐;_
+
+    _@use: @include textAlignment(left);_
+    
+    _@use: @include textAlignment(justify,true);_
+
+    使用参考：无
+
+    ```scss
+    .demo {
+        @include wh(pxToRem(100));
+        @include textAlignment(justify,true); // 文字两端对齐，且最后一行也是两端对齐
+    }
+    ```
+
 ## 样式块
 
 1.  `gradientBorder`
