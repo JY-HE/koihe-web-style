@@ -1,12 +1,12 @@
-# jy-web-style
+# @koihe/web-style
 
 > 一套基于 scss 的前端样式库
 
 ## 安装
 
 ```
-npm install --save jy-web-style
-yarn add jy-web-style
+npm install --save @koihe/web-style
+yarn add @koihe/web-style
 ```
 
 ## 引入
@@ -19,7 +19,7 @@ module.exports = {
         loaderOptions: {
             sass: {
                 data: `
-                @import "jy-web-style/src/index.scss";
+                @import "@koihe/web-style/src/index.scss";
             `,
             },
         },
@@ -35,7 +35,7 @@ module.exports = {
     preprocessorOptions: {
       scss: {
         additionalData: `
-          @import "jy-web-style/src/index.scss";
+          @import "@koihe/web-style/src/index.scss";
          `,
       },
     },
@@ -46,7 +46,7 @@ module.exports = {
 > 在 `main.js` 中或 `main.ts` 以及需要使用的地方导入方法
 
 ```javascript
-import cssUtils from 'jy-web-style/src';
+import cssUtils from '@koihe/web-style/src';
 Vue.prototype.$cssUtils = cssUtils;
 ```
 

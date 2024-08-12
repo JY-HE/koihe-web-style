@@ -5,4 +5,10 @@ node_modules/
 babel.config.js
 *.map
 .prettierrc
-.eslintrc.js
+package-lock.json
+.gitignore
+.prettierrc
+.editorconfig
+.browserslistrc
+babel.config.js
+LICENSE
